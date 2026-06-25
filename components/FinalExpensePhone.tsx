@@ -22,7 +22,7 @@ export function FinalExpensePhone({
   label = 'call',
 }: {
   className?: string;
-  label?: 'call' | 'callNow' | 'orCall';
+  label?: 'call' | 'callNow' | 'orCall' | 'freeConsultation';
 }) {
   const [phone, setPhone] = useState<PhoneState>(DEFAULT_PHONE);
 
@@ -56,9 +56,11 @@ export function FinalExpensePhone({
   const text =
     label === 'callNow'
       ? `Call now: ${phone.display}`
-      : label === 'orCall'
-        ? `Dial ${phone.display}`
-        : `Call ${phone.display}`;
+      : label === 'freeConsultation'
+        ? `FREE Consultation: ${phone.display}`
+        : label === 'orCall'
+          ? `Dial ${phone.display}`
+          : `Call ${phone.display}`;
 
   return (
     <a className={className} href={phone.href}>
