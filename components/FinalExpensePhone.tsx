@@ -57,7 +57,7 @@ export function FinalExpensePhone({
     label === 'callNow'
       ? `Call now: ${phone.display}`
       : label === 'orCall'
-        ? `Or call ${phone.display}`
+        ? `Dial ${phone.display}`
         : `Call ${phone.display}`;
 
   return (
