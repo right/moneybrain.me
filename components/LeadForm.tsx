@@ -25,7 +25,7 @@ export function LeadForm({ compact = false, finalExpense = false }: { compact?: 
           </select>
         </label>
       )}
-      <button className="btn primary" type="submit">{finalExpense ? 'Submit' : 'Get my free quote'}</button>
+      <button className="btn primary" type="submit">Submit</button>
       <p className="fine">No spam. No pressure. By submitting, you agree we may contact you about your request.</p>
     </form>
   );
