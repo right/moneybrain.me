@@ -9,7 +9,7 @@ export function LeadForm({ compact = false, finalExpense = false }: { compact?: 
         <p className="muted">
           {finalExpense
             ? 'Request a free phone consultation with a licensed agent today. No obligation.'
-            : 'Tell us what you need. We’ll help match you with a quote option in plain English.'}
+            : 'Tell us what you need. We’ll help match you with an expert for a free consultation and quote.'}
         </p>
       </div>
       <label>Name<input name="name" autoComplete="name" placeholder="Jane Smith" required /></label>
