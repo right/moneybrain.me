@@ -14,7 +14,7 @@ export function LeadForm({ compact = false, finalExpense = false }: { compact?: 
       </div>
       <label>Name<input name="name" autoComplete="name" placeholder="Jane Smith" required /></label>
       <label>Phone<input name="phone" autoComplete="tel" placeholder="(555) 123-4567" required /></label>
-      {finalExpense && <label>Email<input name="email" type="email" autoComplete="email" placeholder="jane@example.com" required /></label>}
+      <label>Email<input name="email" type="email" autoComplete="email" placeholder="jane@example.com" required /></label>
       {finalExpense ? (
         <input type="hidden" name="interest" value="Final Expense" />
       ) : (
