@@ -55,7 +55,7 @@ export function FinalExpensePhone({
 
   const text =
     label === 'callNow'
-      ? `Call now: ${phone.display}`
+      ? `Call ${phone.display}`
       : label === 'freeConsultation'
         ? `FREE Consultation: ${phone.display}`
         : label === 'orCall'
