@@ -76,8 +76,8 @@ export function LeadForm({ compact = false, finalExpense = false }: { compact?: 
           </select>
         </label>
       )}
-      <button className="btn primary" type="submit" disabled={status === 'submitting'}>
-        {status === 'submitting' ? 'Submitting…' : 'Submit'}
+      <button className="btn primary" type="submit" disabled={status === 'submitting' || status === 'success'}>
+        {status === 'success' ? 'Request submitted' : status === 'submitting' ? 'Submitting…' : 'Submit'}
       </button>
       {message ? <p className={status === 'error' ? 'fine error' : 'fine'}>{message}</p> : null}
       <p className="fine">No spam. No pressure. By submitting, you agree we may contact you about your request.</p>
