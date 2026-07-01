@@ -14,7 +14,8 @@ export function LeadForm({ compact = false, finalExpense = false }: { compact?: 
     setStatus('submitting');
     setMessage('');
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     try {
       const response = await fetch('/api/final-expense-leads', {
@@ -34,7 +35,7 @@ export function LeadForm({ compact = false, finalExpense = false }: { compact?: 
         throw new Error(data?.message || 'Please call us instead.');
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setStatus('success');
       setMessage('Thanks — your request was received. Someone will follow up shortly.');
     } catch (error) {
