@@ -20,6 +20,22 @@ function requiredString(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function getLeadspediaText(value: unknown): string {
+  if (typeof value === 'string') return value;
+  if (!value || typeof value !== 'object') return '';
+
+  const fields = ['msg', 'message', 'error', 'errors', 'result'];
+  return fields
+    .map((field) => JSON.stringify((value as Record<string, unknown>)[field] ?? ''))
+    .join(' ')
+    .toLowerCase();
+}
+
+function isDuplicateLeadspediaResponse(value: unknown) {
+  const text = getLeadspediaText(value);
+  return text.includes('duplicate') || text.includes('dupe') || text.includes('already');
+}
+
 export async function POST(request: NextRequest) {
   if (!CAMPAIGN_ID || !CAMPAIGN_KEY) {
     return NextResponse.json({ ok: false, message: 'Lead posting is not configured yet.' }, { status: 500 });
@@ -74,15 +90,16 @@ export async function POST(request: NextRequest) {
     }
 
     const accepted = response.ok && data?.result === 'success';
+    const duplicate = isDuplicateLeadspediaResponse(data ?? raw);
 
-    if (!accepted) {
+    if (!accepted && !duplicate) {
       return NextResponse.json(
         { ok: false, message: 'Lead was not accepted. Please call us instead.', leadspedia: data ?? raw },
         { status: 502 },
       );
     }
 
-    return NextResponse.json({ ok: true, leadId: data?.lead_id ?? null });
+    return NextResponse.json({ ok: true, duplicate, leadId: data?.lead_id ?? null });
   } catch {
     return NextResponse.json({ ok: false, message: 'Lead posting failed. Please call us instead.' }, { status: 502 });
   }
