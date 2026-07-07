@@ -20,7 +20,7 @@ export default function FinalExpensePage() {
       <section className="fe-hero"><div className="fe-wrap fe-hero-grid"><div>
         <p className="fe-kicker">Life Insurance &gt;&gt; Final Expense</p>
         <h1>Give one last loving gift to your family.</h1>
-        <p className="fe-subhead">Get simple, affordable final expense life insurance options for adults who want to plan ahead. Speak with a real person who can help you understand your choices, and provide you with options.</p>
+        <p className="fe-subhead">Get simple, affordable final expense life insurance options for adults who want to plan ahead.<br /><br />Speak with a real person who can help you understand your choices, and provide you with options.</p>
         <div className="fe-call-card"><p>Talk to a specialist</p><FinalExpensePhone className="fe-call-btn" label="callNow" /><span>Free, no-obligation phone consultation</span></div>
       </div><FinalExpensePhone className="fe-sticky-call" label="freeConsultation" /><div className="fe-hero-image" aria-label="Older family planning ahead for final expenses" /></div></section>
       <section className="fe-section fe-wrap"><h2>A simple way to plan ahead</h2><p>Funeral and end-of-life expenses can be difficult for families. Final expense life insurance is designed to help cover those costs, so your loved ones have one less thing to worry about.</p><ul className="fe-checks">{benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}</ul></section>
