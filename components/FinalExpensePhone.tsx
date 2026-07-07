@@ -41,14 +41,12 @@ export function FinalExpensePhone({
   const [phone, setPhone] = useState<PhoneState | null>(null);
 
   useEffect(() => {
-    if (!showNumber) return;
-
     fetchPhone()
       .then(setPhone)
       .catch(() => {
         // Keep button generic if lookup fails.
       });
-  }, [showNumber]);
+  }, []);
 
   async function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     if (phone?.href) return;
