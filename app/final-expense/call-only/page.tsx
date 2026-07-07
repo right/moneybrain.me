@@ -2,7 +2,7 @@ import { FinalExpensePhone } from '@/components/FinalExpensePhone';
 
 export const metadata = {
   title: 'Final Expense Insurance | Money Brain',
-  description: 'Speak with a real person about affordable final expense insurance options. No pressure. No obligation.',
+  description: 'Speak with a real person about affordable final expense insurance options. Free, no-obligation phone consultation.',
 };
 
 export default function FinalExpenseCallOnlyPage() {
@@ -11,14 +11,14 @@ export default function FinalExpenseCallOnlyPage() {
       <section className="fe-simple-hero">
         <div className="fe-simple-wrap">
           <p className="fe-kicker">Final expense insurance</p>
-          <h1>Help protect your family from funeral costs.</h1>
+          <h1>Give one last loving gift to your family.</h1>
           <p className="fe-subhead">
-            Get simple, affordable burial insurance options for adults who want to plan ahead. Speak with a real person who can help you understand your choices.
+            Get simple, affordable final expense insurance options for adults who want to plan ahead. Speak with a real person who can help you understand your choices, and provide you with options.
           </p>
           <div className="fe-call-card fe-simple-call-card">
-            <p>Get free help from a licensed agent today.</p>
+            <p>Talk to a specialist now.</p>
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
-            <span>No pressure. No obligation.</span>
+            <span>Free, no-obligation phone consultation.</span>
           </div>
         </div>
       </section>

@@ -19,9 +19,9 @@ export default function FinalExpensePage() {
     <main className="fe-page">
       <section className="fe-hero"><div className="fe-wrap fe-hero-grid"><div>
         <p className="fe-kicker">Final expense insurance</p>
-        <h1>Help protect your family from funeral costs.</h1>
-        <p className="fe-subhead">Get simple, affordable burial insurance options for adults who want to plan ahead. Speak with a real person who can help you understand your choices.</p>
-        <div className="fe-call-card"><p>Get free help from a licensed agent today.</p><FinalExpensePhone className="fe-call-btn" label="callNow" /><span>No pressure. No obligation.</span></div>
+        <h1>Give one last loving gift to your family.</h1>
+        <p className="fe-subhead">Get simple, affordable final expense insurance options for adults who want to plan ahead. Speak with a real person who can help you understand your choices, and provide you with options.</p>
+        <div className="fe-call-card"><p>Talk to a specialist now.</p><FinalExpensePhone className="fe-call-btn" label="callNow" /><span>Free, no-obligation phone consultation.</span></div>
       </div><FinalExpensePhone className="fe-sticky-call" label="freeConsultation" /><div className="fe-hero-image" aria-label="Older family planning ahead for final expenses" /></div></section>
       <section className="fe-section fe-wrap"><h2>A simple way to plan ahead</h2><p>Funeral and end-of-life expenses can be difficult for families. Final expense insurance is designed to help cover those costs, so your loved ones have one less thing to worry about.</p><ul className="fe-checks">{benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}</ul></section>
       <section className="fe-section fe-band"><div className="fe-wrap"><h2>How it works</h2><div className="fe-steps"><div><strong>1. Call us</strong><p>Tell us a little about what you need.</p></div><div><strong>2. Review options</strong><p>We explain available plans in plain English.</p></div><div><strong>3. Choose calmly</strong><p>You decide if a plan makes sense for your family.</p></div></div></div></section>
