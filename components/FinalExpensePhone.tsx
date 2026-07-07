@@ -1,17 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { site } from '@/lib/site';
-
-type PhoneState = {
-  display: string;
-  href: string;
-};
-
-const DEFAULT_PHONE: PhoneState = {
-  display: site.finalExpensePhone,
-  href: site.finalExpensePhoneHref,
-};
+import type { MouseEvent } from 'react';
 
 function digitsOnly(value: string) {
   return value.replace(/\D/g, '');
@@ -19,52 +8,32 @@ function digitsOnly(value: string) {
 
 export function FinalExpensePhone({
   className,
-  label = 'call',
 }: {
   className?: string;
   label?: 'call' | 'callNow' | 'orCall' | 'freeConsultation';
 }) {
-  const [phone, setPhone] = useState<PhoneState>(DEFAULT_PHONE);
+  async function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
 
-  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const fbclid = params.get('fbclid');
+    const url = fbclid ? `/api/dni?fbclid=${encodeURIComponent(fbclid)}` : '/api/dni';
 
-    if (!fbclid) return;
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      const data = response.ok ? await response.json() : null;
 
-    const controller = new AbortController();
-
-    fetch(`/api/dni?fbclid=${encodeURIComponent(fbclid)}`, {
-      signal: controller.signal,
-      cache: 'no-store',
-    })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!data?.number || !data?.display) return;
-        setPhone({
-          display: data.display,
-          href: `tel:+1${digitsOnly(String(data.number)).replace(/^1/, '')}`,
-        });
-      })
-      .catch(() => {
-        // Keep default number if DNI fails.
-      });
-
-    return () => controller.abort();
-  }, []);
-
-  const text =
-    label === 'callNow'
-      ? `Call ${phone.display}`
-      : label === 'freeConsultation'
-        ? `FREE Consultation: ${phone.display}`
-        : label === 'orCall'
-          ? `Dial ${phone.display}`
-          : `Call ${phone.display}`;
+      if (data?.number) {
+        window.location.href = `tel:+1${digitsOnly(String(data.number)).replace(/^1/, '')}`;
+      }
+    } catch {
+      // If the number lookup fails, leave the visitor on the page instead of exposing a fallback number in the markup.
+    }
+  }
 
   return (
-    <a className={className} href={phone.href}>
-      {text}
+    <a className={className} href="#" onClick={handleClick} role="button">
+      Call Now
     </a>
   );
 }
