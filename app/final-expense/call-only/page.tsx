@@ -13,7 +13,7 @@ export default function FinalExpenseCallOnlyPage() {
           <p className="fe-kicker">Life Insurance &gt;&gt; Final Expense</p>
           <h1>Give one last loving gift to your family.</h1>
           <p className="fe-subhead">
-            Get simple, affordable final expense life insurance options for adults who want to plan ahead.
+            Get simple, affordable final expense life insurance for adults who want to plan ahead.
             <br />
             <br />
             Speak with a real person who can help you understand your choices, and provide you with options.
