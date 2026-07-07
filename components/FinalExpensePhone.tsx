@@ -33,7 +33,7 @@ export function FinalExpensePhone({
 
   return (
     <a className={className} href="#" onClick={handleClick} role="button">
-      Call Now
+      CALL NOW
     </a>
   );
 }
