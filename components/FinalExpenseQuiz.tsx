@@ -125,9 +125,6 @@ export function FinalExpenseQuiz() {
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
             <span>Free, no-obligation phone consultation</span>
           </div>
-          <button className="fe-quiz-back" type="button" onClick={() => setStep(0)}>
-            Start over
-          </button>
         </div>
       )}
     </section>
