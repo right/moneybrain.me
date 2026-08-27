@@ -17,7 +17,7 @@ export default function FinalExpenseQuizCallPage() {
           <FinalExpenseQuiz />
           <div className="fe-quiz-supporting-copy">
             <p className="fe-subhead">
-              Give one last loving gift to your family. Answer 3 quick questions, then speak with a real person who can help you understand your choices and provide you with options.
+              Answer 3 quick questions to see if you qualify, then speak with a real person for program details.
             </p>
             <ul className="fe-quiz-value-list">
               <li>No medical exam required for many plans</li>
