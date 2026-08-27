@@ -106,9 +106,9 @@ export function FinalExpenseQuiz() {
           <p className="fe-quiz-eyebrow">Please wait</p>
           <h2>Reviewing your answers...</h2>
           <ul>
-            <li className={reviewStep >= 0 ? 'is-active' : ''}>Reviewing your answers</li>
-            <li className={reviewStep >= 1 ? 'is-active' : ''}>Checking available final expense programs</li>
-            <li className={reviewStep >= 2 ? 'is-active' : ''}>Confirming eligibility in your area</li>
+            <li className={reviewStep === 0 ? 'is-active' : reviewStep > 0 ? 'is-complete' : ''}>Reviewing your answers<span className="fe-review-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></li>
+            <li className={reviewStep === 1 ? 'is-active' : reviewStep > 1 ? 'is-complete' : ''}>Checking available final expense programs<span className="fe-review-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></li>
+            <li className={reviewStep === 2 ? 'is-active' : ''}>Confirming eligibility in your area<span className="fe-review-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></li>
           </ul>
         </div>
       )}
