@@ -13,8 +13,6 @@ export default function FinalExpenseQuizCallPage() {
           <div className="fe-quiz-copy">
             <p className="fe-kicker">Life Insurance &gt;&gt; Final Expense</p>
             <h1>New Final Expense Benefit Program</h1>
-            <p className="fe-quiz-headline-line">is now <strong>accepting applications</strong></p>
-            <p className="fe-quiz-application-line">Take this 2-min application</p>
           </div>
           <FinalExpenseQuiz />
           <div className="fe-quiz-supporting-copy">

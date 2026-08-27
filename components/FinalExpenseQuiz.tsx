@@ -31,6 +31,7 @@ export function FinalExpenseQuiz() {
   const [answers, setAnswers] = useState<Answers>({});
   const [zip, setZip] = useState('');
   const [isReviewing, setIsReviewing] = useState(false);
+  const [reviewStep, setReviewStep] = useState(0);
 
   const progress = useMemo(() => Math.min(((step + 1) / 4) * 100, 100), [step]);
   const isResult = step >= 3;
@@ -43,12 +44,15 @@ export function FinalExpenseQuiz() {
   function submitZip(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setAnswers((current) => ({ ...current, zip: zip.trim() }));
+    setReviewStep(0);
     setIsReviewing(true);
 
+    window.setTimeout(() => setReviewStep(1), 650);
+    window.setTimeout(() => setReviewStep(2), 1350);
     window.setTimeout(() => {
       setIsReviewing(false);
       setStep(3);
-    }, 2200);
+    }, 2400);
   }
 
   return (
@@ -102,9 +106,9 @@ export function FinalExpenseQuiz() {
           <p className="fe-quiz-eyebrow">Please wait</p>
           <h2>Reviewing your answers...</h2>
           <ul>
-            <li>Reviewing your answers</li>
-            <li>Checking available final expense programs</li>
-            <li>Confirming eligibility in your area</li>
+            <li className={reviewStep >= 0 ? 'is-active' : ''}>Reviewing your answers</li>
+            <li className={reviewStep >= 1 ? 'is-active' : ''}>Checking available final expense programs</li>
+            <li className={reviewStep >= 2 ? 'is-active' : ''}>Confirming eligibility in your area</li>
           </ul>
         </div>
       )}
@@ -116,11 +120,6 @@ export function FinalExpenseQuiz() {
           <p>
             Last step: call now to confirm your information and speak with a real person who can help you understand your choices.
           </p>
-          <ul className="fe-quiz-result-list">
-            <li>No medical exam required for many plans</li>
-            <li>Coverage options commonly start around $10,000+</li>
-            <li>Budget-friendly plans may be available from about $1/day</li>
-          </ul>
           <div className="fe-call-card fe-quiz-call-card">
             <p>Tap to call and confirm your info</p>
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
