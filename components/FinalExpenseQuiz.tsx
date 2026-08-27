@@ -123,7 +123,7 @@ export function FinalExpenseQuiz() {
           <div className="fe-call-card fe-quiz-call-card">
             <p>Call now to confirm your info</p>
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
-            <span>Free, no-obligation phone consultation</span>
+            <span>Free phone review</span>
             <span className="fe-live-agents"><span aria-hidden="true" /><span className="fe-live-agents-text">Live agents available</span></span>
           </div>
         </div>
