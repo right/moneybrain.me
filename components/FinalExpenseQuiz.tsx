@@ -47,12 +47,12 @@ export function FinalExpenseQuiz() {
     setReviewStep(0);
     setIsReviewing(true);
 
-    window.setTimeout(() => setReviewStep(1), 1200);
-    window.setTimeout(() => setReviewStep(2), 2600);
+    window.setTimeout(() => setReviewStep(1), 2400);
+    window.setTimeout(() => setReviewStep(2), 5200);
     window.setTimeout(() => {
       setIsReviewing(false);
       setStep(3);
-    }, 4200);
+    }, 8400);
   }
 
   return (
