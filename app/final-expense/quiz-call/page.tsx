@@ -12,12 +12,14 @@ export default function FinalExpenseQuizCallPage() {
         <div className="fe-quiz-wrap">
           <div className="fe-quiz-copy">
             <p className="fe-kicker">Life Insurance &gt;&gt; Final Expense</p>
-            <h1>See if you may qualify before you call.</h1>
+            <h1>New Final Expense Benefit Program</h1>
+            <p className="fe-quiz-headline-line">is now <strong>accepting applications</strong></p>
+            <p className="fe-quiz-application-line">Take this 2-min application</p>
           </div>
           <FinalExpenseQuiz />
           <div className="fe-quiz-supporting-copy">
             <p className="fe-subhead">
-              Answer 3 quick questions to check final expense options that may help protect your family from funeral, burial, and other end-of-life costs.
+              Give one last loving gift to your family. Answer 3 quick questions, then speak with a real person who can help you understand your choices and provide you with options.
             </p>
             <ul className="fe-quiz-value-list">
               <li>No medical exam required for many plans</li>

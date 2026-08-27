@@ -30,6 +30,7 @@ export function FinalExpenseQuiz() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [zip, setZip] = useState('');
+  const [isReviewing, setIsReviewing] = useState(false);
 
   const progress = useMemo(() => Math.min(((step + 1) / 4) * 100, 100), [step]);
   const isResult = step >= 3;
@@ -42,7 +43,12 @@ export function FinalExpenseQuiz() {
   function submitZip(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setAnswers((current) => ({ ...current, zip: zip.trim() }));
-    setStep(3);
+    setIsReviewing(true);
+
+    window.setTimeout(() => {
+      setIsReviewing(false);
+      setStep(3);
+    }, 2200);
   }
 
   return (
@@ -71,7 +77,7 @@ export function FinalExpenseQuiz() {
         </div>
       )}
 
-      {step === 2 && (
+      {step === 2 && !isReviewing && (
         <form className="fe-quiz-step" onSubmit={submitZip}>
           <p className="fe-quiz-eyebrow">Step 3 of 3</p>
           <h2>What is your ZIP code?</h2>
@@ -91,12 +97,24 @@ export function FinalExpenseQuiz() {
         </form>
       )}
 
+      {isReviewing && (
+        <div className="fe-quiz-reviewing">
+          <p className="fe-quiz-eyebrow">Please wait</p>
+          <h2>Reviewing your answers...</h2>
+          <ul>
+            <li>Reviewing your answers</li>
+            <li>Checking available final expense programs</li>
+            <li>Confirming eligibility in your area</li>
+          </ul>
+        </div>
+      )}
+
       {isResult && (
         <div className="fe-quiz-result">
-          <p className="fe-quiz-eyebrow">Pre-check complete</p>
-          <h2>You may qualify for final expense coverage options.</h2>
+          <p className="fe-quiz-eyebrow">Congratulations</p>
+          <h2>You pre-qualify for this final expense program.</h2>
           <p>
-            Based on your answers, a licensed specialist may be able to help you compare options for your family.
+            Last step: call now to confirm your information and speak with a real person who can help you understand your choices.
           </p>
           <ul className="fe-quiz-result-list">
             <li>No medical exam required for many plans</li>
@@ -104,9 +122,9 @@ export function FinalExpenseQuiz() {
             <li>Budget-friendly plans may be available from about $1/day</li>
           </ul>
           <div className="fe-call-card fe-quiz-call-card">
-            <p>Next step: check availability by phone</p>
+            <p>Tap to call and confirm your info</p>
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
-            <span>Free, no-obligation consultation</span>
+            <span>Free, no-obligation phone consultation</span>
           </div>
           <button className="fe-quiz-back" type="button" onClick={() => setStep(0)}>
             Start over
