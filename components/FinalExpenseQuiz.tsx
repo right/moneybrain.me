@@ -124,6 +124,7 @@ export function FinalExpenseQuiz() {
             <p>Tap to call and confirm your info</p>
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
             <span>Free, no-obligation phone consultation</span>
+            <span className="fe-live-agents"><span aria-hidden="true" />Live agents available</span>
           </div>
         </div>
       )}
