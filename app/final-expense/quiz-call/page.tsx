@@ -13,6 +13,9 @@ export default function FinalExpenseQuizCallPage() {
           <div className="fe-quiz-copy">
             <p className="fe-kicker">Life Insurance &gt;&gt; Final Expense</p>
             <h1>See if you may qualify before you call.</h1>
+          </div>
+          <FinalExpenseQuiz />
+          <div className="fe-quiz-supporting-copy">
             <p className="fe-subhead">
               Answer 3 quick questions to check final expense options that may help protect your family from funeral, burial, and other end-of-life costs.
             </p>
@@ -25,7 +28,6 @@ export default function FinalExpenseQuizCallPage() {
               Availability, rates, and eligibility vary by age, state, health, and carrier. Not all applicants qualify.
             </p>
           </div>
-          <FinalExpenseQuiz />
         </div>
       </section>
     </main>
