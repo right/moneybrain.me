@@ -47,12 +47,12 @@ export function FinalExpenseQuiz() {
     setReviewStep(0);
     setIsReviewing(true);
 
-    window.setTimeout(() => setReviewStep(1), 2400);
-    window.setTimeout(() => setReviewStep(2), 5200);
+    window.setTimeout(() => setReviewStep(1), 1700);
+    window.setTimeout(() => setReviewStep(2), 3600);
     window.setTimeout(() => {
       setIsReviewing(false);
       setStep(3);
-    }, 8400);
+    }, 5900);
   }
 
   return (
@@ -118,10 +118,10 @@ export function FinalExpenseQuiz() {
           <p className="fe-quiz-eyebrow">Congratulations</p>
           <h2>You pre-qualify for this final expense program.</h2>
           <p>
-            Last step: call now to confirm your information and speak with a real person who can help you understand your choices.
+            Last step: speak to a live person, confirm your info and get details.
           </p>
           <div className="fe-call-card fe-quiz-call-card">
-            <p>Tap to call and confirm your info</p>
+            <p>Call now to confirm your info</p>
             <FinalExpensePhone className="fe-call-btn" label="callNow" />
             <span>Free, no-obligation phone consultation</span>
             <span className="fe-live-agents"><span aria-hidden="true" /><span className="fe-live-agents-text">Live agents available</span></span>
