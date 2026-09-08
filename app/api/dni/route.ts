@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
   url.searchParams.set('fbclid', fbclid);
 
   try {
-    const response = await fetch(url, { cache: 'no-store' });
+    const response = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(3000) });
     if (!response.ok) return NextResponse.json(DEFAULT_RESPONSE);
 
     const data = await response.json();

@@ -39,8 +39,8 @@ export function FinalExpenseQualify() {
           <p>
             Based on your age, coverage options are available in your area. <b>Tap the button below to speak with a licensed agent now</b> and lock in your rate. This only takes a couple of minutes.
           </p>
-          <FinalExpensePhone className="fe-qualify-call" />
-          <FinalExpensePhone className="fe-qualify-num" showNumber />
+          <FinalExpensePhone className="fe-qualify-call" fbclidDniOnly />
+          <FinalExpensePhone className="fe-qualify-num" showNumber fbclidDniOnly />
           <div className="fe-qualify-urg">
             <span aria-hidden="true">◷</span>
             Due to high call volume, an agent can only hold your spot for the next 3 minutes.

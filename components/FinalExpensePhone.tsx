@@ -2,6 +2,11 @@
 
 import { useEffect, useState, type MouseEvent } from 'react';
 
+const DEFAULT_PHONE = {
+  number: '18773691725',
+  display: '(877) 369-1725',
+};
+
 type PhoneState = {
   display: string;
   href: string;
@@ -20,9 +25,11 @@ function toPhoneState(data: { number?: unknown; display?: unknown } | null): Pho
   };
 }
 
-async function fetchPhone(): Promise<PhoneState | null> {
-  const params = new URLSearchParams(window.location.search);
-  const fbclid = params.get('fbclid');
+function getFbclid() {
+  return new URLSearchParams(window.location.search).get('fbclid');
+}
+
+async function fetchPhone(fbclid?: string | null): Promise<PhoneState | null> {
   const url = fbclid ? `/api/dni?fbclid=${encodeURIComponent(fbclid)}` : '/api/dni';
   const response = await fetch(url, { cache: 'no-store' });
   const data = response.ok ? await response.json() : null;
@@ -30,23 +37,41 @@ async function fetchPhone(): Promise<PhoneState | null> {
   return toPhoneState(data);
 }
 
+const defaultPhone = toPhoneState(DEFAULT_PHONE);
+
 export function FinalExpensePhone({
   className,
   showNumber = false,
+  fbclidDniOnly = false,
 }: {
   className?: string;
   label?: 'call' | 'callNow' | 'orCall' | 'freeConsultation';
   showNumber?: boolean;
+  fbclidDniOnly?: boolean;
 }) {
-  const [phone, setPhone] = useState<PhoneState | null>(null);
+  const [phone, setPhone] = useState<PhoneState | null>(fbclidDniOnly ? defaultPhone : null);
 
   useEffect(() => {
-    fetchPhone()
+    if (fbclidDniOnly) {
+      const fbclid = getFbclid();
+      if (!fbclid) return;
+
+      fetchPhone(fbclid)
+        .then((nextPhone) => {
+          if (nextPhone) setPhone(nextPhone);
+        })
+        .catch(() => {
+          // Keep the default number if DNI lookup fails.
+        });
+      return;
+    }
+
+    fetchPhone(getFbclid())
       .then(setPhone)
       .catch(() => {
         // Keep button generic if lookup fails.
       });
-  }, []);
+  }, [fbclidDniOnly]);
 
   async function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     if (phone?.href) return;
@@ -54,7 +79,7 @@ export function FinalExpensePhone({
     event.preventDefault();
 
     try {
-      const nextPhone = await fetchPhone();
+      const nextPhone = await fetchPhone(getFbclid());
       if (nextPhone?.href) {
         window.location.href = nextPhone.href;
       }
