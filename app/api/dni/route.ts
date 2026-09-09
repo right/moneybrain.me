@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
   const url = new URL(DNI_URL);
   url.searchParams.set('lp_public_key', '1021c5e95f999f41328dc98bac18af69');
   url.searchParams.set('lp_block_id', '3');
-  url.searchParams.set('lp_campaign_id', '261');
+  url.searchParams.set('lp_campaign_id', '422');
   url.searchParams.set('ip_address', ip);
   url.searchParams.set('fbclid', fbclid);
   if (s1) url.searchParams.set('s1', s1);
