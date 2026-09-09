@@ -20,6 +20,7 @@ function getVisitorIp(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const fbclid = request.nextUrl.searchParams.get('fbclid');
+  const s1 = request.nextUrl.searchParams.get('s1');
 
   if (!fbclid) {
     return NextResponse.json(DEFAULT_RESPONSE);
@@ -37,6 +38,7 @@ export async function GET(request: NextRequest) {
   url.searchParams.set('lp_campaign_id', '261');
   url.searchParams.set('ip_address', ip);
   url.searchParams.set('fbclid', fbclid);
+  if (s1) url.searchParams.set('s1', s1);
 
   try {
     const response = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(3000) });

@@ -25,12 +25,20 @@ function toPhoneState(data: { number?: unknown; display?: unknown } | null): Pho
   };
 }
 
-function getFbclid() {
-  return new URLSearchParams(window.location.search).get('fbclid');
+function getTrackingParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    fbclid: params.get('fbclid'),
+    s1: params.get('s1'),
+  };
 }
 
-async function fetchPhone(fbclid?: string | null): Promise<PhoneState | null> {
-  const url = fbclid ? `/api/dni?fbclid=${encodeURIComponent(fbclid)}` : '/api/dni';
+async function fetchPhone(tracking?: { fbclid?: string | null; s1?: string | null }): Promise<PhoneState | null> {
+  const params = new URLSearchParams();
+  if (tracking?.fbclid) params.set('fbclid', tracking.fbclid);
+  if (tracking?.s1) params.set('s1', tracking.s1);
+
+  const url = params.toString() ? `/api/dni?${params.toString()}` : '/api/dni';
   const response = await fetch(url, { cache: 'no-store' });
   const data = response.ok ? await response.json() : null;
 
@@ -53,10 +61,10 @@ export function FinalExpensePhone({
 
   useEffect(() => {
     if (fbclidDniOnly) {
-      const fbclid = getFbclid();
-      if (!fbclid) return;
+      const tracking = getTrackingParams();
+      if (!tracking.fbclid) return;
 
-      fetchPhone(fbclid)
+      fetchPhone(tracking)
         .then((nextPhone) => {
           if (nextPhone) setPhone(nextPhone);
         })
@@ -66,7 +74,7 @@ export function FinalExpensePhone({
       return;
     }
 
-    fetchPhone(getFbclid())
+    fetchPhone(getTrackingParams())
       .then(setPhone)
       .catch(() => {
         // Keep button generic if lookup fails.
@@ -79,7 +87,7 @@ export function FinalExpensePhone({
     event.preventDefault();
 
     try {
-      const nextPhone = await fetchPhone(getFbclid());
+      const nextPhone = await fetchPhone(getTrackingParams());
       if (nextPhone?.href) {
         window.location.href = nextPhone.href;
       }
